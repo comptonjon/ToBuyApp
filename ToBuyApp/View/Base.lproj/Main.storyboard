@@ -133,7 +133,7 @@
             </objects>
             <point key="canvasLocation" x="265" y="134"/>
         </scene>
-        <!--Add EditVC-->
+        <!--Title-->
         <scene sceneID="pGG-Lk-oyG">
             <objects>
                 <viewController id="lki-Zt-PYc" customClass="AddEditVC" customModule="ToBuyApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -199,11 +199,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DGH-Q8-v3d"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="sqe-DJ-C3g"/>
                     <connections>
                         <outlet property="addEditButton" destination="ppd-V1-CX7" id="tno-0N-ij6"/>
                         <outlet property="itemDetailTextField" destination="5u9-o3-h28" id="1ys-0G-U8G"/>
                         <outlet property="itemPriceTextField" destination="nA4-nr-mnY" id="4wT-WW-umM"/>
                         <outlet property="itemTitleTextField" destination="ABL-Sl-vl0" id="6TC-nm-Cfd"/>
+                        <outlet property="navItem" destination="sqe-DJ-C3g" id="J8Q-T6-XdV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDr-PJ-JcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

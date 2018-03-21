@@ -20,11 +20,19 @@ class AddEditVC: UIViewController {
     @IBOutlet weak var itemPriceTextField: UITextField!
     @IBOutlet weak var itemDetailTextField: UITextField!
     @IBOutlet weak var addEditButton: UIButton!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if editMode {
             addEditButton.setTitle("Edit Item", for: .normal)
+            self.itemTitleTextField.placeholder = db.items[index!].title
+            self.itemPriceTextField.placeholder = db.items[index!].price
+            self.itemDetailTextField.placeholder = db.items[index!].details
+            navItem.title = "Edit Item"
+            
+        } else {
+            navItem.title = "Add Item"
         }
         
        
