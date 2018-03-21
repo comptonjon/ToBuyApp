@@ -8,18 +8,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = UIColor.darkGray
+        tableView.delegate = self
+        tableView.dataSource = self
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        cell.toBuyImageView.image = UIImage(named: "img01.jpg")
+        cell.toBuyTitleLabel.text = "Seattle Supersonics"
+        cell.toBuyPriceLabel.text = "$700,000,000.00"
+        cell.toBuyDetailLabel.text = "Rich history and several stars have emerged historically from this now defunct franchise."
+        return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
+    }
 
 }
 
