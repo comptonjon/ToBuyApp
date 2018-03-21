@@ -11,9 +11,9 @@ import UIKit
 class AddEditVC: UIViewController {
     
     let db = ItemDB.singletonDB
-    let editMode = false
-    let indexPath : IndexPath? = nil
-    let item : Item? = nil
+    var editMode = false
+    var index : Int? = nil
+
     
     
     @IBOutlet weak var itemTitleTextField: UITextField!
@@ -32,13 +32,34 @@ class AddEditVC: UIViewController {
 
         
     }
+    func editItem(index: Int) {
+        if itemTitleTextField.text! != "" {
+            db.items[index].title = itemTitleTextField.text!
+        }
+        if itemPriceTextField.text != "" {
+            db.items[index].price  = itemPriceTextField.text!
+        }
+        if itemDetailTextField.text != "" {
+            db.items[index].details = itemDetailTextField.text!
+        }
+        print("Edited")
+    }
 
     
     @IBAction func addEditButtonTapped(_ sender: Any) {
-        let newItem = Item(title: itemTitleTextField.text!, price: itemPriceTextField.text!, image: "default.jpg", details: itemDetailTextField.text!)
-        db.items.append(newItem)
+        if editMode {
+            if let index = index {
+                self.editItem(index: index)
+            }
+        } else {
+            let newItem = Item(title: itemTitleTextField.text!, price: itemPriceTextField.text!, image: "default.jpg", details: itemDetailTextField.text!)
+            db.items.append(newItem)
+        }
+        
         navigationController!.popViewController(animated: true)
     }
+        
+        
     
 
     

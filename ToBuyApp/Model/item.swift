@@ -9,10 +9,10 @@
 import Foundation
 
 class Item {
-    let title: String
-    let price: String
-    let image: String
-    let details: String
+    var title: String
+    var price: String
+    var image: String
+    var details: String
     
     init(title: String, price: String, image: String, details: String) {
         self.title = title
