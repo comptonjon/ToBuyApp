@@ -15,6 +15,8 @@
 		B10B44772061EF75007DD7D0 /* img01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B10B44762061EF75007DD7D0 /* img01.jpg */; };
 		B145ACB520620EFF005DCFDC /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145ACB420620EFF005DCFDC /* ShadowView.swift */; };
 		B145ACB720620F63005DCFDC /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145ACB620620F63005DCFDC /* ItemCell.swift */; };
+		B145ACBA206214D4005DCFDC /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145ACB9206214D4005DCFDC /* ItemDB.swift */; };
+		B145ACBC206214EB005DCFDC /* item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145ACBB206214EB005DCFDC /* item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		B10B44762061EF75007DD7D0 /* img01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img01.jpg; sourceTree = "<group>"; };
 		B145ACB420620EFF005DCFDC /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		B145ACB620620F63005DCFDC /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		B145ACB9206214D4005DCFDC /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
+		B145ACBB206214EB005DCFDC /* item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		B10B44612061EACD007DD7D0 /* ToBuyApp */ = {
 			isa = PBXGroup;
 			children = (
+				B145ACB8206214BE005DCFDC /* Model */,
 				B10B44622061EACD007DD7D0 /* AppDelegate.swift */,
 				B10B44642061EACD007DD7D0 /* ViewController.swift */,
 				B145ACB420620EFF005DCFDC /* ShadowView.swift */,
@@ -71,6 +76,15 @@
 				B145ACB620620F63005DCFDC /* ItemCell.swift */,
 			);
 			path = ToBuyApp;
+			sourceTree = "<group>";
+		};
+		B145ACB8206214BE005DCFDC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B145ACB9206214D4005DCFDC /* ItemDB.swift */,
+				B145ACBB206214EB005DCFDC /* item.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +164,8 @@
 				B145ACB520620EFF005DCFDC /* ShadowView.swift in Sources */,
 				B10B44652061EACD007DD7D0 /* ViewController.swift in Sources */,
 				B10B44632061EACD007DD7D0 /* AppDelegate.swift in Sources */,
+				B145ACBC206214EB005DCFDC /* item.swift in Sources */,
+				B145ACBA206214D4005DCFDC /* ItemDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

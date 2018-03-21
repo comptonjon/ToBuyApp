@@ -11,10 +11,10 @@ import UIKit
 class ItemCell: UITableViewCell {
 
     @IBOutlet weak var contentContainerView: UIView!
-    @IBOutlet weak var toBuyImageView: UIImageView!
-    @IBOutlet weak var toBuyTitleLabel: UILabel!
-    @IBOutlet weak var toBuyPriceLabel: UILabel!
-    @IBOutlet weak var toBuyDetailLabel: UILabel!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemTitleLabel: UILabel!
+    @IBOutlet weak var itemPriceLabel: UILabel!
+    @IBOutlet weak var itemDetailLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

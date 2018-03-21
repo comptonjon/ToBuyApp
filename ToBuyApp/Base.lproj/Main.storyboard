@@ -98,10 +98,10 @@
                                         <color key="backgroundColor" red="0.95523184539999995" green="0.67402960710000004" blue="0.94209151160000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="contentContainerView" destination="U0N-Db-RB5" id="QPP-4m-txN"/>
-                                            <outlet property="toBuyDetailLabel" destination="eVv-9Q-UGd" id="syK-TJ-C23"/>
-                                            <outlet property="toBuyImageView" destination="JlA-lY-0au" id="45S-B6-9G6"/>
-                                            <outlet property="toBuyPriceLabel" destination="1T8-aJ-UPR" id="64N-A8-g8p"/>
-                                            <outlet property="toBuyTitleLabel" destination="Grv-6l-pa4" id="Dka-fX-VU3"/>
+                                            <outlet property="itemDetailLabel" destination="eVv-9Q-UGd" id="syK-TJ-C23"/>
+                                            <outlet property="itemImageView" destination="JlA-lY-0au" id="45S-B6-9G6"/>
+                                            <outlet property="itemPriceLabel" destination="1T8-aJ-UPR" id="64N-A8-g8p"/>
+                                            <outlet property="itemTitleLabel" destination="Grv-6l-pa4" id="Dka-fX-VU3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
