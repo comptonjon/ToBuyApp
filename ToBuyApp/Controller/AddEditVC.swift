@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
-class AddEditVC: UIViewController {
+import AVKit
+class AddEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let db = ItemDB.singletonDB
+    let imagePicker = UIImagePickerController()
     var editMode = false
     var index : Int? = nil
 
@@ -21,6 +22,9 @@ class AddEditVC: UIViewController {
     @IBOutlet weak var itemDetailTextField: UITextField!
     @IBOutlet weak var addEditButton: UIButton!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var changePhotoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +33,16 @@ class AddEditVC: UIViewController {
             self.itemTitleTextField.placeholder = db.items[index!].title
             self.itemPriceTextField.placeholder = db.items[index!].price
             self.itemDetailTextField.placeholder = db.items[index!].details
+            self.itemImage.image = db.items[index!].image
             navItem.title = "Edit Item"
             
         } else {
             navItem.title = "Add Item"
+            self.itemImage.image = UIImage(named: "default.jpg")
+            changePhotoButton.setTitle("Add Photo", for: .normal)
+            
         }
+        imagePicker.delegate = self
         
        
         
@@ -50,9 +59,24 @@ class AddEditVC: UIViewController {
         if itemDetailTextField.text != "" {
             db.items[index].details = itemDetailTextField.text!
         }
+        
         print("Edited")
     }
-
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.itemImage.image = image
+            if editMode {
+                self.db.items[index!].image = image
+            }
+            
+            imagePicker.dismiss(animated: true, completion: nil)
+        }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func addEditButtonTapped(_ sender: Any) {
         if editMode {
@@ -60,7 +84,7 @@ class AddEditVC: UIViewController {
                 self.editItem(index: index)
             }
         } else {
-            let newItem = Item(title: itemTitleTextField.text!, price: itemPriceTextField.text!, image: "default.jpg", details: itemDetailTextField.text!)
+            let newItem = Item(title: itemTitleTextField.text!, price: itemPriceTextField.text!, image: itemImage.image!, details: itemDetailTextField.text!)
             db.items.append(newItem)
         }
         
@@ -68,6 +92,11 @@ class AddEditVC: UIViewController {
     }
         
         
+    @IBAction func changePhotoBtnTapped(_ sender: UIButton) {
+        imagePicker.sourceType = .savedPhotosAlbum
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
     
 
     

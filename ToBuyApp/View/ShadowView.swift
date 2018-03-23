@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @IBDesignable
 class ShadowView: UIView {

@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var reorderButton: UIBarButtonItem!
     
     let database = ItemDB.singletonDB
     var item : Item? = nil
@@ -33,7 +35,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         let item = database.items[indexPath.row]
-        cell.itemImageView.image = UIImage(named: item.image)
+        cell.itemImageView.image = item.image
         cell.itemTitleLabel.text = item.title
         cell.itemPriceLabel.text = item.price
         cell.itemDetailLabel.text = item.details
@@ -54,12 +56,30 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = database.items[sourceIndexPath.row]
+        database.items.remove(at: sourceIndexPath.row)
+        database.items.insert(item, at: destinationIndexPath.row)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddEditVCEdit" {
             let destinationVC = segue.destination as! AddEditVC
             destinationVC.editMode = true
             destinationVC.index = self.index
         }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     @objc func longTap(recognizer: UILongPressGestureRecognizer){
@@ -80,6 +100,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func reorderButtonTapped(_ sender: UIBarButtonItem) {
+        tableView.isEditing = !tableView.isEditing
+        if tableView.isEditing {
+            reorderButton.title = "Done"
+        } else {
+            reorderButton.title = "Arrange"
+        }
+    }
     
     
     

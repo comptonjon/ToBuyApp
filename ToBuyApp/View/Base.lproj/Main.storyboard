@@ -95,7 +95,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="COh-Ir-K7V" secondAttribute="trailing" constant="10" id="qAV-J3-Kw1"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.95523184539999995" green="0.67402960710000004" blue="0.94209151160000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="contentContainerView" destination="U0N-Db-RB5" id="QPP-4m-txN"/>
                                             <outlet property="itemDetailLabel" destination="eVv-9Q-UGd" id="syK-TJ-C23"/>
@@ -117,6 +117,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="ToBuy" id="HDa-d3-sM6">
+                        <barButtonItem key="leftBarButtonItem" title="Arrange" id="svF-NK-QrQ">
+                            <color key="tintColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="reorderButtonTapped:" destination="BYZ-38-t0r" id="65B-JU-cYR"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Euu-Wn-vuC">
                             <color key="tintColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -125,6 +131,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="reorderButton" destination="svF-NK-QrQ" id="VDW-7c-xPS"/>
                         <outlet property="tableView" destination="YQA-Xd-uG9" id="UxV-Cq-xB8"/>
                         <segue destination="lki-Zt-PYc" kind="show" identifier="toAddEditVCEdit" id="6cR-PH-dQx"/>
                     </connections>
@@ -148,7 +155,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lki-Zt-PYc" id="1Dc-Qi-TcG"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Item Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-nr-mnY">
                                 <rect key="frame" x="16" y="163" width="343" height="30"/>
@@ -157,7 +167,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lki-Zt-PYc" id="Lcx-ja-K6A"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Item Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5u9-o3-h28">
                                 <rect key="frame" x="16" y="225" width="343" height="60"/>
@@ -166,7 +179,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lki-Zt-PYc" id="9WB-cq-aEK"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppd-V1-CX7">
                                 <rect key="frame" x="23" y="600" width="329" height="47"/>
@@ -181,28 +197,65 @@
                                     <action selector="addEditButtonTapped:" destination="lki-Zt-PYc" eventType="touchUpInside" id="rmr-Jc-QFO"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-ga-QsU">
+                                <rect key="frame" x="137.5" y="312" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="8TA-av-2LJ"/>
+                                    <constraint firstAttribute="width" constant="100" id="xWl-8Q-XsU"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T32-63-fS2">
+                                <rect key="frame" x="138" y="433" width="98" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ecZ-zJ-Rx0"/>
+                                    <constraint firstAttribute="width" constant="98" id="xHm-UX-TZS"/>
+                                </constraints>
+                                <state key="normal" title="Change Photo"/>
+                                <connections>
+                                    <action selector="changePhotoBtnTapped:" destination="lki-Zt-PYc" eventType="touchUpInside" id="7Qx-dK-3sh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1a-VT-k5Y">
+                                <rect key="frame" x="23" y="481" width="329" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="Zmg-m4-qWy"/>
+                                    <constraint firstAttribute="width" constant="329" id="adI-ed-eBf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="T32-63-fS2" firstAttribute="top" secondItem="aF6-ga-QsU" secondAttribute="bottom" constant="21" id="2dH-S6-aRk"/>
                             <constraint firstItem="ABL-Sl-vl0" firstAttribute="top" secondItem="DGH-Q8-v3d" secondAttribute="top" constant="37" id="53N-vn-c0C"/>
                             <constraint firstItem="DGH-Q8-v3d" firstAttribute="trailing" secondItem="ABL-Sl-vl0" secondAttribute="trailing" constant="16" id="7vM-Jr-cox"/>
                             <constraint firstItem="nA4-nr-mnY" firstAttribute="top" secondItem="ABL-Sl-vl0" secondAttribute="bottom" constant="32" id="BeC-Uz-kTD"/>
                             <constraint firstItem="DGH-Q8-v3d" firstAttribute="trailing" secondItem="nA4-nr-mnY" secondAttribute="trailing" constant="16" id="CvX-nq-fof"/>
                             <constraint firstItem="5u9-o3-h28" firstAttribute="top" secondItem="nA4-nr-mnY" secondAttribute="bottom" constant="32" id="NFS-n1-L0P"/>
+                            <constraint firstItem="T32-63-fS2" firstAttribute="centerX" secondItem="gTF-Ag-gcA" secondAttribute="centerX" id="OaN-gr-dad"/>
                             <constraint firstItem="DGH-Q8-v3d" firstAttribute="trailing" secondItem="ppd-V1-CX7" secondAttribute="trailing" constant="23" id="V2a-uh-HYn"/>
+                            <constraint firstItem="G1a-VT-k5Y" firstAttribute="centerX" secondItem="gTF-Ag-gcA" secondAttribute="centerX" id="XFd-r2-1jG"/>
                             <constraint firstItem="ppd-V1-CX7" firstAttribute="leading" secondItem="DGH-Q8-v3d" secondAttribute="leading" constant="23" id="YR8-Py-Vfa"/>
                             <constraint firstItem="DGH-Q8-v3d" firstAttribute="bottom" secondItem="ppd-V1-CX7" secondAttribute="bottom" constant="20" id="bVi-Dy-20u"/>
                             <constraint firstItem="5u9-o3-h28" firstAttribute="leading" secondItem="DGH-Q8-v3d" secondAttribute="leading" constant="16" id="f7a-lk-Msa"/>
+                            <constraint firstItem="aF6-ga-QsU" firstAttribute="top" secondItem="5u9-o3-h28" secondAttribute="bottom" constant="27" id="fRz-Lw-8eN"/>
                             <constraint firstItem="DGH-Q8-v3d" firstAttribute="trailing" secondItem="5u9-o3-h28" secondAttribute="trailing" constant="16" id="htA-5l-ImW"/>
                             <constraint firstItem="nA4-nr-mnY" firstAttribute="leading" secondItem="DGH-Q8-v3d" secondAttribute="leading" constant="16" id="nnR-bK-rHu"/>
                             <constraint firstItem="ABL-Sl-vl0" firstAttribute="leading" secondItem="DGH-Q8-v3d" secondAttribute="leading" constant="16" id="qbR-gO-nfz"/>
+                            <constraint firstItem="aF6-ga-QsU" firstAttribute="centerX" secondItem="gTF-Ag-gcA" secondAttribute="centerX" id="vLF-jH-UPc"/>
+                            <constraint firstItem="G1a-VT-k5Y" firstAttribute="top" secondItem="T32-63-fS2" secondAttribute="bottom" constant="18" id="zMv-wW-NRH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DGH-Q8-v3d"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="sqe-DJ-C3g"/>
                     <connections>
                         <outlet property="addEditButton" destination="ppd-V1-CX7" id="tno-0N-ij6"/>
+                        <outlet property="changePhotoButton" destination="T32-63-fS2" id="7bG-vC-tKf"/>
+                        <outlet property="errorLabel" destination="G1a-VT-k5Y" id="H55-Oz-X7k"/>
                         <outlet property="itemDetailTextField" destination="5u9-o3-h28" id="1ys-0G-U8G"/>
+                        <outlet property="itemImage" destination="aF6-ga-QsU" id="zn9-Qs-9u8"/>
                         <outlet property="itemPriceTextField" destination="nA4-nr-mnY" id="4wT-WW-umM"/>
                         <outlet property="itemTitleTextField" destination="ABL-Sl-vl0" id="6TC-nm-Cfd"/>
                         <outlet property="navItem" destination="sqe-DJ-C3g" id="J8Q-T6-XdV"/>
